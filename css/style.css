@@ -1,0 +1,137 @@
+img {
+  height: 100%;
+  width: 100%;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.row {
+  justify-content: center;
+}
+
+.col-md-10 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.col-md-10 .card {
+  height: 350px !important;
+}
+
+.text {
+  padding: 10px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+h4 {
+  font-size: 1.2rem !important;
+}
+
+.navbar-brand {
+  color:#fff !important;
+}
+
+.login, .logout {
+  padding: 10px 20px;
+  background:  lightcyan;
+  border-radius: 2px;
+  color:#333;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.login {
+  border-top: 4px solid #c00;
+}
+
+.logout {
+  border-top: 4px solid lime;
+}
+
+.boka {
+  margin: 3em;
+}
+
+.btn-book, .pay {
+  padding: 10px 50px;
+  background: #999;
+  border-top-left-radius: 5px;
+  border-bottom: ;-right-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-book.confirm {
+  width: 60%;
+  margin: 1em 20%;
+}
+
+.col-md-9 {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.kassan {
+  position: absolute;
+  right: 12%;
+  padding: 10px;
+  color: #fff;
+}
+
+.kassan:hover {
+  border-bottom: 1px red solid;
+  color: #fff !important;
+}
+
+.remove {
+	float: right;
+	position: absolute;
+	right: 50px;
+	top: 60px;
+	font-size: 18px;
+	border: 2px solid #333;
+	border-radius: 50%;
+	padding: 1px 10px;
+	font-weight: 900;
+	color: #c00;
+}
+
+.tack {
+  padding: 10%;
+}
+
+.card.checkout {
+  padding: 2% 4%;
+}
+
+.col-md-10 h2 {
+	border-right: 2px solid #999;
+	margin: 20px;
+	border-left: 2px solid #999;
+}
+
+.card.login {
+  padding: 2%;
+}
+
+.wrong {
+	margin-top: 1em;
+	text-align: center;
+	color: #c00;
+}
+
+.warning {
+	text-align: center;
+	color: #c00;
+	font-weight: 700;
+}
