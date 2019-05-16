@@ -11,8 +11,8 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Välj Film</label>
             <select name="val" class="form-control" id="exampleFormControlSelect1">
-              <?php foreach ($filmer as $film) {
-                echo "<option value='$film->age'>" .$film->name. ' <i> ( '.$film->age.'+)<i/>'. "</option>";
+              <?php while ($film = mysqli_fetch_array($result) ) {
+                echo "<option value=".$film['filmId'].">" .$film['filmTitel']. ' <i> ( '.$film['filmAge'].'+)<i/>'. "</option>";
               } ?>
             </select>
           </div>

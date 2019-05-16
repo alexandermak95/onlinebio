@@ -21,6 +21,7 @@
          <?php if(isset($_SESSION['antal']) && $_SESSION['antal'] > 0) : ?>
            <a class="kassan" href="checkout.php">Kassan &#9873; (<?php echo $_SESSION['antal'];?>)</a>
          <?php endif; ?>
+         <a class="profile" href="account.php">Mina Sidor</a>
          <a class="logout" href="logout.php">Logga ut</a>
      <?php endif; ?>
       </nav>

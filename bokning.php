@@ -1,12 +1,18 @@
-<?php include 'header.php'; ?>
 
-<!-- Kollar inloggningen -->
-<?php if(!isset($_SESSION['status'])) {
+<?php
+include 'header.php';
+if(!isset($_SESSION['status'])) {
   header('Location:login.php');
   exit;
-} ?>
-<!-- Hämtar alla filmer -->
-<?php $filmer = $_SESSION['movies'];?>
+}
+require './functions/conn.php';
+require './functions/getList.php';
+require './functions/ticket.php';
+require './classes/user.php';
+$conn = dbConnect();
+// Hämtar array med önskad tabell från db
+$result= getList($conn, 'film');?>
+
 <!-- Hämtar formuläret -->
 <?php require './templates/booking-form.php'; ?>
 
@@ -20,14 +26,25 @@ $quantity = $_POST['antal'];
 $guardian = $_POST['co'];
  ?>
 
-<!-- Validator -->
+
 <?php if (isset($_POST['order']) && $_POST['order'] == 1) {
   $_SESSION['antal'] = $quantity;
-  $ageCheck =  orderCheck($age, $choice, $guardian );
-  if ($ageCheck == 'pass') {
-    header('Location: checkout.php');
+  // Hämtar kund Id
+  $userId = $_SESSION['kundId'];
+  // Hämtar vald film via filmId
+  $query = "SELECT * FROM film WHERE filmId='$choice'";
+  $result = mysqli_query($conn, $query);
+  while ($row= mysqli_fetch_array($result)) {
+    // Kollar åldern
+    $ageCheck =  orderCheck($age, $row['filmAge'], $guardian );
+    if ($ageCheck == 'pass') {
+      // utför ett köp av en biljett
+      ticket($conn, $userId, $choice, $quantity);
+      header('Location: checkout.php');
+    }
   }
+
 }?>
 
-
+<?php dbClose($conn);?>
 <?php include 'footer.php'; ?>

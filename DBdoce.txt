@@ -13,7 +13,7 @@ CREATE TABLE film (
     filmDate VARCHAR(50),
     platser INT,
     filmCover VARCHAR(250),
-	PRIMARY KEY (filmId, platser)
+	PRIMARY KEY (filmId)
 );
 CREATE TABLE ticket(
 	ticketId INT NOT NULL AUTO_INCREMENT,
@@ -22,5 +22,5 @@ CREATE TABLE ticket(
   antalTickets INT,
 	PRIMARY KEY (ticketId),
   FOREIGN KEY (ticketKundId) REFERENCES kund(kundId),
-	FOREIGN KEY (ticketFilmId,antalTickets) REFERENCES film(filmId, platser),
+	FOREIGN KEY (ticketFilmId) REFERENCES film(filmId),
 );

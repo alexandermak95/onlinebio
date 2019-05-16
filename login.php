@@ -12,6 +12,7 @@
           </div>
           <button type="submit" class="btn-book">Logga in</button>
       </form>
+      <h6 class="signup">Är du inte medlem än?<i><a href="signup.php"> bli medlem</a></i></h6>
     </div>
   </div>
 </div>

@@ -1,7 +1,6 @@
 <?php include 'header.php'; ?>
-
-<!-- skapar användare -->
-<?php $name = 'alex'; $pass = '1234';?>
+<?php require './functions/conn.php'; ?>
+<?php $conn = dbConnect();?>
 
 <!-- hämtar info från formuläret -->
 <?php
@@ -16,10 +15,23 @@ if(isset($_POST['set']) && $_POST['set'] == 1) {
 } ?>
 
 <?php if($set == 1) {
-  if ($user == $name && $password == $pass) {
+  // Kan slängas i en function
+  $query = "SELECT * FROM kund WHERE kundNamn='$user'";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_array($result);
+  $name = $row['kundNamn'];
+  $pass = $row['password'];
+
+  $id = $row['kundId'];
+  if ($row && $user == $name && password_verify($password, $pass)) {
     $_SESSION['status'] = 'ok';
+    $_SESSION['kundId'] = $id;
+    if($name == 'ADMIN') {
+      $_SESSION['admin'] = 'ok';
+    }
     header('Location: index.php');
-  } else {
+  }
+   else {
     echo "<h2 class='wrong'>Fel användernamn eller lösenord! Försök igen!</h2>"; ?>
     <div class="container">
       <div class="row">
