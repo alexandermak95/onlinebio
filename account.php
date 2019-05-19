@@ -70,7 +70,7 @@ if (isset($_POST['filmset']) && $_POST['filmset'] == 1) :
    echo "<p class='warning'> Bilden finns redan!</p>";
   }else{
    move_uploaded_file($temp_name,$path_filename_ext);
-  }
+
   $title = mysqli_real_escape_string($conn,$_POST['titel']);
   $age = mysqli_real_escape_string($conn,$_POST['age']);
   $date = mysqli_real_escape_string($conn,$_POST['date']);
@@ -80,19 +80,31 @@ if (isset($_POST['filmset']) && $_POST['filmset'] == 1) :
   $query = "INSERT INTO film (filmTitel, filmAge, filmPris, filmDate, platser, filmCover)
             VALUES('$title', '$age', '$price', '$date', '$seats', '$cover')";
   $result = mysqli_query($conn, $query);
+  }
   endif;
  ?>
+
+
+ <!-- Radera film -->
+ <?php if(isset($_POST['delete']) && $_POST['delete'] > 0) {
+   $admin->deleteFilm($conn, $_POST['delete']);
+ } ?>
+
+ <!-- Redigera film  -->
+ <?php if (isset($_POST['edit']) && $_POST['edit'] > 0) {
+   $admin->updateFilm($conn, $_POST['edit']);
+ } ?>
 
 <div class="container">
   <div class="row">
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 buttons">
           <button id="showbox" class="btn-book" type="button" name="button">Lägg till filmer</button>
           <button id="showbox-2" class="btn-book" type="button" name="button">Alla filmer</button>
         </div>
       </div>
-      <div class="row">
+      <div class="row all-movies">
         <div class="col-md-12">
           <div class="movies">
             <?php $filmer = getList($conn, 'film'); ?>
@@ -117,8 +129,23 @@ if (isset($_POST['filmset']) && $_POST['filmset'] == 1) :
                       <td><?php echo $film['filmDate'];?></td>
                       <td><?php echo $film['platser'];?></td>
                       <td><?php echo $film['filmPris'];?></td>
-                      <td><span>&#9998;</span></td>
-                      <td><span>&#9747;</span></td>
+                      <td class="edit">
+                        <span>&#9998;</span>
+                        <form class="editform" action="account.php" method="post">
+                          <input type="hidden" name="edit" value="<?php echo $film['filmId'];?>">
+                          <input type="text" name="titel" value="<?php echo $film['filmTitel'];?>">
+                          <input type="text" name="date" value="<?php echo $film['filmDate'];?>">
+                          <input type="text" name="seats" value="<?php echo $film['platser'];?>">
+                          <input type="text" name="price" value="<?php echo $film['filmPris'];?>">
+                          <button type="submit" name="button">Uppdatera</button>
+                        </form>
+                      </td>
+                      <td>
+                        <form action="account.php" method="post">
+                        <input type="hidden" name="delete" value="<?php echo $film['filmId']; ?>">
+                        <button class="remove" type="submit" value="radera"><span>&#9747;</span></button>
+                      </form>
+                    </td>
                     </tr>
                   <?php endwhile; ?>
                 </tbody>
@@ -126,7 +153,7 @@ if (isset($_POST['filmset']) && $_POST['filmset'] == 1) :
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row add-movies">
         <div class="col-md-10">
           <div class="card login">
             <form class="film" action="account.php" method="post" enctype="multipart/form-data">

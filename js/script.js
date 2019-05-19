@@ -5,13 +5,13 @@ jQuery(document).ready(function($) {
   $('.col-md-3 .card').click(function () {
     $(this).toggleClass('active');
   })
-  // $('#add').click(function() {
-  //   $('.order-klar').scrollIntoView()
-  //   $('#order-add').css('display','none');
-  //   $('.order-klar').css('display','block');
-  // })
-  // $('#order').click(function() {
-  //   $('#order-add').css('display','block');
-  //   $('.order-klar').css('display','none');
-  // })
+  $('#showbox').click(function () {
+    $('.add-movies').toggleClass('active');
+  })
+  $('#showbox-2').click(function () {
+    $('.all-movies').toggleClass('active');
+  })
+  $('.edit span').click(function () {
+    $(this).next().toggleClass('active-edit');
+  })
 });

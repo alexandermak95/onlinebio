@@ -9,7 +9,6 @@ require './functions/conn.php';
 require './functions/getList.php';
 require './functions/ticket.php';
 require './classes/user.php';
-require './functions/counter.php';
 $conn = dbConnect();
 // Hämtar array med önskad tabell från db
 $result= getList($conn, 'film');?>

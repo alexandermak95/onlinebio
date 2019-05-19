@@ -1,6 +1,4 @@
 <?php include 'header.php'; ?>
-<?php unset($_SESSION['antal']); ?>
-
 <div class="container">
   <div class="row">
     <div class="col-md-9">

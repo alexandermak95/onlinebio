@@ -42,7 +42,7 @@ while ($movies = mysqli_fetch_array($result)) : ?>
                    <div class="col-md-10">
                      <div class="boka">
                        <?php if(isset($_SESSION['status'])) : ?>
-                       <a class="btn-book" href="bokning.php">Biljetter</a>
+                       <a class="btn-book" href="bokning.php?filmid=<?php echo $movies['filmId'];?>">Biljetter</a>
                      <?php else : ?>
                        <a class="btn-book" href="login.php">Biljetter</a><br>
                      <?php endif; ?>
