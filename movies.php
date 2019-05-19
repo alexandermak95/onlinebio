@@ -1,10 +1,11 @@
 <?php
 session_start();
 require './functions/conn.php';
-require './functions/getList.php';
+require './classes/user.php';
 $conn = dbConnect();
+$kund = new User($_SESSION['kundId']);
 // Hämtar array med önskad tabell från db
-$result= getList($conn, 'film');
+$result= $kund->getList($conn, 'film');
 
 while ($movies = mysqli_fetch_array($result)) : ?>
 <?php if ($movies['platser'] > 0): ?>

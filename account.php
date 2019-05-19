@@ -1,7 +1,6 @@
 <?php require './classes/user.php'; ?>
 <?php require './classes/admin.php'; ?>
 <?php require './functions/conn.php'; ?>
-<?php require './functions/getList.php'; ?>
 <?php include "header.php"; ?>
 <?php $conn = dbConnect(); ?>
 <!-- Kollar Om man är inloggad  -->
@@ -27,7 +26,7 @@
       </div>
       <div class="orders">
         <h2>Köpta biljetter</h2>
-        <?php $orders = getSpec($conn, $_SESSION['kundId']); ?>
+        <?php $orders = $users->getSpec($conn, $_SESSION['kundId']); ?>
         <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -107,7 +106,7 @@ if (isset($_POST['filmset']) && $_POST['filmset'] == 1) :
       <div class="row all-movies">
         <div class="col-md-12">
           <div class="movies">
-            <?php $filmer = getList($conn, 'film'); ?>
+            <?php $filmer = $admin->getList($conn, 'film'); ?>
             <table class="table">
               <thead class="thead-dark">
                 <tr>

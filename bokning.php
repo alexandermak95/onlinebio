@@ -6,12 +6,11 @@ if(!isset($_SESSION['status'])) {
   exit;
 }
 require './functions/conn.php';
-require './functions/getList.php';
-require './functions/ticket.php';
 require './classes/user.php';
 $conn = dbConnect();
+$kund = new User($_SESSION['kundId']);
 // Hämtar array med önskad tabell från db
-$result= getList($conn, 'film');?>
+$result= $kund->getList($conn, 'film');?>
 
 <!-- Hämtar formuläret -->
 <?php require './templates/booking-form.php'; ?>
@@ -26,7 +25,6 @@ $quantity = $_POST['antal'];
 $guardian = $_POST['co'];
  ?>
 
-
 <?php if (isset($_POST['order']) && $_POST['order'] == 1) {
   $_SESSION['antal'] = $quantity;
   // Hämtar kund Id
@@ -37,10 +35,9 @@ $guardian = $_POST['co'];
   while ($row= mysqli_fetch_array($result)) {
     // Kollar åldern
     $ageCheck =  orderCheck($age, $row['filmAge'], $guardian );
-    $total = counter($quantity, $row['filmPris']);
     if ($ageCheck == 'pass') {
       // utför ett köp av en biljett
-      ticket($conn, $userId, $choice, $quantity);
+      $kund->ticket($conn, $userId, $choice, $quantity);
       header('Location: kvitto.php');
     }
   }
