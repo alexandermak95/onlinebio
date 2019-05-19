@@ -1,4 +1,4 @@
-<?php include 'header.php';?>
+<?php /* include 'header.php';?>
 <!-- Kollar inloggningen -->
 <?php if(!isset($_SESSION['status'])) {
   header('Location:login.php');
@@ -21,6 +21,4 @@
     </div>
   </div>
 </div>
-
-
-<?php include 'footer.php';?>
+<?php include 'footer.php'; */?>

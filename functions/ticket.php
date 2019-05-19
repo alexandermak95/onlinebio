@@ -4,7 +4,8 @@ function ticket($conn, $userId, $filmId, $antal) {
   $userId1 = mysqli_real_escape_string($conn, $userId);
   $filmId1 = mysqli_real_escape_string($conn, $filmId);
   $antal1 = mysqli_real_escape_string($conn, $antal);
-  $query = "INSERT INTO ticket (ticketKundId,ticketFilmId,antalTickets) VALUES((SELECT kundId FROM kund WHERE kundId=$userId1), (SELECT filmId FROM film WHERE filmId=$filmId1), $antal1 )";
+  $query = "INSERT INTO ticket (ticketKundId,ticketFilmId,antalTickets)
+  VALUES((SELECT kundId FROM kund WHERE kundId=$userId1), (SELECT filmId FROM film WHERE filmId=$filmId1), $antal1 )";
   $result = mysqli_query($conn,$query) or die("Query failed: $query");
 
   // Uppdaterar film tabellen

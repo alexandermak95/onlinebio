@@ -1,4 +1,4 @@
-<div class="container">
+<div id="order-add" class="container">
   <div class="row">
     <div class="col-md-9">
       <div class="booking-form">
@@ -27,7 +27,7 @@
               <option value="ja">JA</option>
             </select>
           </div>
-          <button class="btn-book confirm" type="submit" name="button">Beställ</button>
+          <button id="add" class="btn-book confirm" type="submit" name="button">Beställ</button>
         </form>
       </div>
     </div>

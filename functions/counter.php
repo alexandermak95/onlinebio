@@ -1,5 +1,5 @@
 <?php
-function counter($arg) {
-  return $arg * 150;
+function counter($arg, $arg2) {
+  return $arg * $arg2;
 }
  ?>

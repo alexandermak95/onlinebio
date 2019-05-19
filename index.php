@@ -2,8 +2,8 @@
     <?php include "header.php"; ?>
     <div class="container">
       <div class="row">
-        <div class="col-md-10">
-          <h2>Aktuella filmer</h2>
+        <div class="col-md-12">
+          <h2 class="headline">Aktuella filmer</h2>
           <div class="row">
             <?php include "movies.php"; ?>
           </div>

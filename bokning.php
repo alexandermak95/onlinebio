@@ -9,6 +9,7 @@ require './functions/conn.php';
 require './functions/getList.php';
 require './functions/ticket.php';
 require './classes/user.php';
+require './functions/counter.php';
 $conn = dbConnect();
 // Hämtar array med önskad tabell från db
 $result= getList($conn, 'film');?>
@@ -37,14 +38,16 @@ $guardian = $_POST['co'];
   while ($row= mysqli_fetch_array($result)) {
     // Kollar åldern
     $ageCheck =  orderCheck($age, $row['filmAge'], $guardian );
+    $total = counter($quantity, $row['filmPris']);
     if ($ageCheck == 'pass') {
       // utför ett köp av en biljett
       ticket($conn, $userId, $choice, $quantity);
-      header('Location: checkout.php');
+      header('Location: kvitto.php');
     }
   }
-
 }?>
+
+
 
 <?php dbClose($conn);?>
 <?php include 'footer.php'; ?>

@@ -12,17 +12,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-dark bg-dark">
-        <a href="index.php" class="navbar-brand dark">BioOnline</a>
-        <?php if(!isset($_SESSION['status'])) : ?>
-          <a class="login" href="login.php">Logga in</a>
-       <?php else : ?>
-         <?php if(isset($_SESSION['antal']) && $_SESSION['antal'] > 0) : ?>
-           <a class="kassan" href="checkout.php">Kassan &#9873; (<?php echo $_SESSION['antal'];?>)</a>
-         <?php endif; ?>
-         <a class="profile" href="account.php">Mina Sidor</a>
-         <a class="logout" href="logout.php">Logga ut</a>
-     <?php endif; ?>
-      </nav>
-    </header>
+    <div class="wrap">
+      <header>
+        <nav class="navbar navbar-dark bg-dark">
+          <a href="index.php" class="navbar-brand dark">BioOnline</a>
+          <?php if(!isset($_SESSION['status'])) : ?>
+            <a class="login" href="login.php">Logga in</a>
+         <?php else : ?>
+           <a class="profile" href="account.php">Mina Sidor</a>
+           <a class="logout" href="logout.php">Logga ut</a>
+       <?php endif; ?>
+        </nav>
+      </header>
